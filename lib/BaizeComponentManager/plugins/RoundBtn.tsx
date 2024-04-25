@@ -3,7 +3,7 @@ import AppIcon from "../AppIcon";
 
 export const RoundBtn = () => {
   return (
-    <div>
+    <div onClick={() => console.log("RoundBtn clicked")}>
       <AppIcon icon="#baize-screen-shot-yuanxingweixuanzhong" />
     </div>
   );

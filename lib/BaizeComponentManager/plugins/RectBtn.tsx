@@ -3,7 +3,7 @@ import AppIcon from "../AppIcon";
 
 export const RectBtn = () => {
   return (
-    <div>
+    <div onClick={() => console.log("RectBtn clicked")}>
       <AppIcon icon="#baize-screen-shot-juxing" />
     </div>
   );

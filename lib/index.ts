@@ -1,6 +1,5 @@
 export {
-  componentManager,
-  Component,
-  ComponentsManager,
-} from "./componentManager";
+  baizeComponentManager,
+  BaizeComponentsManager,
+} from "./BaizeComponentManager";
 export { renderToolBar } from "./toolBar";

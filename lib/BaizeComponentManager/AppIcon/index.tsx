@@ -5,17 +5,15 @@ interface AppIconProps {
   icon: string;
   className?: string;
   fontSize?: number | string;
-  color?: React.CSSProperties["color"];
   [key: string]: any;
 }
 
 export default function AppIcon(props: AppIconProps) {
-  const { icon, className, fontSize, color, ...rest } = props;
+  const { icon, className, fontSize, ...rest } = props;
   const style: React.CSSProperties = {};
   fontSize &&
     (style.fontSize =
       typeof fontSize === "number" ? `${fontSize}px` : fontSize);
-  color && (style.color = color);
   const isSvg = icon.indexOf("#") === 0;
 
   return isSvg ? (
