@@ -20,13 +20,14 @@
     "build": "tsc && vite build"
   },
   "devDependencies": {
+    "fabric": "^5.3.0",
     "less": "^4.2.0",
     "patch-package": "^8.0.0",
     "tsx-create-element": "^2.2.9",
     "typescript": "^5.4.5",
     "vite": "^5.2.10"
   },
-  "dependencies": {
+  "peerDependencies": {
     "fabric": "^5.3.0"
   },
   "pnpm": {
