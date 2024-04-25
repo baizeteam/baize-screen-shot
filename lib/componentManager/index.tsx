@@ -1,6 +1,7 @@
 import { RectBtn } from "./plugins/RectBtn";
 import { RoundBtn } from "./plugins/RoundBtn";
 import { createElement } from "tsx-create-element";
+import "./iconfont.js";
 
 // 定义组件
 export class Component {
@@ -13,7 +14,7 @@ export class Component {
   }
 }
 
-// 创建注册表
+// 组件管理器
 export class ComponentsManager {
   components: { [name: string]: Component };
   constructor(props) {
@@ -32,11 +33,11 @@ export class ComponentsManager {
     return this.components[name];
   }
 
-  public render(list) {
+  public render(list, props) {
     return list.map((name) => {
       const component = this.getComponent(name);
       if (component) {
-        return component.render();
+        return component.render(props);
       }
     });
   }
@@ -48,15 +49,15 @@ export const componentManager = new ComponentsManager({});
 // 注册组件
 componentManager.registerComponent({
   name: "RectBtn",
-  render: () => <RectBtn />,
+  render: (props) => <RectBtn {...props} />,
 });
 componentManager.registerComponent({
   name: "RoundBtn",
-  render: () => <RoundBtn />,
+  render: (props) => <RoundBtn {...props} />,
 });
 componentManager.registerComponent({
   name: "test",
-  render: () => (
+  render: (props) => (
     <div
       onClick={() => {
         console.log(111);
