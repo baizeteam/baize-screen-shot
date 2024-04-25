@@ -1,0 +1,13 @@
+diff --git a/dist/es6/index.js b/dist/es6/index.js
+index d00b59a604839e4540c10ef3fccd8bf493d38e3b..37da0a99b5010aa0bf781d72e094103231d30264 100644
+--- a/dist/es6/index.js
++++ b/dist/es6/index.js
+@@ -18,7 +18,7 @@ function decamelize(str, separator = '-') {
+ export function createElement(tag, attrs, ...children) {
+     if (typeof tag === 'function') {
+         const fn = tag;
+-        const props = attrs;
++        const props = attrs || {};
+         props.children = children;
+         return fn(props);
+     }
