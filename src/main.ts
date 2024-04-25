@@ -1,7 +1,12 @@
 import "./style.css";
 import { fabric } from "fabric";
 import { ClipBox } from "../lib/clipBox";
-import "../lib/toolBar";
+import { renderToolBar } from "../lib";
+
+const toolBarDom = document.createElement("div");
+toolBarDom.id = "baize-tool-bar";
+document.body.appendChild(toolBarDom);
+renderToolBar(toolBarDom);
 
 const selectCanvas = document.querySelector(
   "#baize-select-canvas"
