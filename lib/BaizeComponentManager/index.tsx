@@ -1,5 +1,6 @@
 import { RectBtn } from "./plugins/RectBtn.jsx";
 import { RoundBtn } from "./plugins/RoundBtn.jsx";
+import { SelectBtn } from "./plugins/SelectBtn.jsx";
 import { createElement } from "tsx-create-element";
 import "./iconfont.js";
 
@@ -69,4 +70,8 @@ baizeComponentManager.registerComponent({
       test
     </div>
   ),
+});
+baizeComponentManager.registerComponent({
+  name: "SelectBtn",
+  render: (props) => <SelectBtn {...props} />,
 });

@@ -1,15 +1,14 @@
 import { createElement } from "tsx-create-element";
-import AppIcon from "../AppIcon";
 import { toolCanvasManager } from "../../ToolCanvasManager";
+import AppIcon from "../AppIcon";
 
-export const RectBtn = () => {
+export const SelectBtn = () => {
   const handleClick = () => {
-    toolCanvasManager.changeSelectStatus(false);
-    toolCanvasManager.addGraph("Rect");
+    toolCanvasManager.changeSelectStatus(true);
   };
   return (
     <div onClick={handleClick}>
-      <AppIcon icon="#baize-screen-shot-juxing" />
+      <AppIcon icon="#baize-screen-shot-shubiaojiantou" />
     </div>
   );
 };

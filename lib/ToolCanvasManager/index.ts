@@ -34,7 +34,6 @@ export class ToolCanvasManager {
       backgroundColor: "white",
     });
     this.toolCanvas.on("mouse:down", (e) => {
-      console.log("mouse:down", this.graphType);
       if (!this.graphType || !!this.toolCanvas.getActiveObject()) {
         return;
       }
