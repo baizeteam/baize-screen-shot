@@ -1,24 +1,26 @@
 import "./style.css";
 import { fabric } from "fabric";
 import { ClipBox } from "../lib/clipBox";
-import { renderToolBar } from "../lib";
+import {
+  renderToolBar,
+  toolCanvasManager,
+  initToolCanvasManager,
+} from "../lib";
 
+// 添加操作工具栏
 const toolBarDom = document.createElement("div");
 toolBarDom.id = "baize-tool-bar";
 document.body.appendChild(toolBarDom);
 renderToolBar(toolBarDom);
 
-const selectCanvas = document.querySelector(
-  "#baize-select-canvas"
+// 添加fabricjs画布
+const toolCanvasDom = document.querySelector(
+  "#baize-tool-canvas",
 ) as HTMLCanvasElement;
+toolCanvasDom.width = window.innerWidth;
+toolCanvasDom.height = window.innerHeight;
 
-const fabricCanvas = new fabric.Canvas(selectCanvas, {
-  selection: true,
-  selectable: true,
-  preserveObjectStacking: true,
-  backgroundColor: "white",
-});
+initToolCanvasManager(toolCanvasDom);
+// ClipBox.getInstance({ canvas: toolCanvasManager.toolCanvas });
 
-ClipBox.getInstance({ canvas: fabricCanvas });
-
-console.log(fabricCanvas);
+console.log(toolCanvasManager.toolCanvas);

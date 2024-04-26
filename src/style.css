@@ -4,6 +4,12 @@ body{
   overflow: hidden;
 }
 
+#baize-tool-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}
+
 /* #baize-select-canvas{
   canvas{
     width: 100%;
