@@ -1,8 +1,12 @@
+import { createElement } from "tsx-create-element";
+import "./iconfont.js";
 import { RectBtn } from "./plugins/RectBtn.jsx";
 import { RoundBtn } from "./plugins/RoundBtn.jsx";
 import { SelectBtn } from "./plugins/SelectBtn.jsx";
-import { createElement } from "tsx-create-element";
-import "./iconfont.js";
+import { ArrowBtn } from "./plugins/ArrowBtn.jsx";
+import { TextBtn } from "./plugins/TextBtn.jsx";
+import { MosaicBtn } from "./plugins/MosaicBtn.jsx";
+import { SaveBtn } from "./plugins/SaveBtn.jsx";
 
 export type Component = {
   name: string;
@@ -60,18 +64,22 @@ baizeComponentManager.registerComponent({
   render: (props) => <RoundBtn {...props} />,
 });
 baizeComponentManager.registerComponent({
-  name: "test",
-  render: (props) => (
-    <div
-      onClick={() => {
-        console.log(111);
-      }}
-    >
-      test
-    </div>
-  ),
-});
-baizeComponentManager.registerComponent({
   name: "SelectBtn",
   render: (props) => <SelectBtn {...props} />,
+});
+baizeComponentManager.registerComponent({
+  name: "ArrowBtn",
+  render: (props) => <ArrowBtn {...props} />,
+});
+baizeComponentManager.registerComponent({
+  name: "TextBtn",
+  render: (props) => <TextBtn {...props} />,
+});
+baizeComponentManager.registerComponent({
+  name: "MosaicBtn",
+  render: (props) => <MosaicBtn {...props} />,
+});
+baizeComponentManager.registerComponent({
+  name: "SaveBtn",
+  render: (props) => <SaveBtn {...props} />,
 });

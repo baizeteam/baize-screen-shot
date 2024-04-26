@@ -108,7 +108,6 @@ export class ToolCanvasManager {
     this.toolCanvas.selection = selection;
     this.dragData.isDragging = false;
     this.shapeData = null;
-    console.log(this.toolCanvas);
   }
 }
 

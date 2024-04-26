@@ -1,4 +1,4 @@
-import "./style.css";
+import "./style.less";
 import { fabric } from "fabric";
 import { ClipBox } from "../lib/clipBox";
 import {
