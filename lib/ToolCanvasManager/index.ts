@@ -70,15 +70,20 @@ export class ToolCanvasManager {
       );
 
       // 只有当拖动距离大于 MIN_DRAG_DISTANCE 时才创建图形
-      if (dragDistance > MIN_DRAG_DISTANCE && !this.shape) {
+      if (
+        !this.shapeData.checkDistance ||
+        (dragDistance > MIN_DRAG_DISTANCE && !this.shape)
+      ) {
         this.shape = this.shapeData.createShape(this.dragData);
-        this.shape.set({
-          fill: this.fill,
-          selectable: true,
-          strokeWidth: this.strokeWidth,
-          stroke: this.stroke,
-        });
-        this.toolCanvas.add(this.shape);
+        if (this.shape) {
+          this.shape.set({
+            fill: this.fill,
+            selectable: true,
+            strokeWidth: this.strokeWidth,
+            stroke: this.stroke,
+          });
+          this.toolCanvas.add(this.shape);
+        }
       }
       this.toolCanvas.renderAll();
     });

@@ -20,7 +20,11 @@ export const RectBtn = () => {
       });
     };
     toolCanvasManager.changeSelectStatus(false);
-    toolCanvasManager.addShape({ createShape, updateShape });
+    toolCanvasManager.addShape({
+      createShape,
+      updateShape,
+      checkDistance: true,
+    });
   };
   return (
     <div onClick={handleClick}>
