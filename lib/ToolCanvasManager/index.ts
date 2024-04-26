@@ -2,18 +2,22 @@ import { fabric } from "fabric";
 
 const MIN_DRAG_DISTANCE = 5;
 
+export interface IDragData {
+  isDragging: boolean;
+  startX: number;
+  startY: number;
+  currentX: number;
+  currentY: number;
+}
+
 export class ToolCanvasManager {
   toolCanvas: fabric.Canvas;
-  graphType: string;
-  graph: fabric.Object;
-  fill: string = "red";
-  dragData: {
-    isDragging: boolean;
-    startX: number;
-    startY: number;
-    currentX: number;
-    currentY: number;
-  } = {
+  shapeData: any;
+  shape: fabric.Object;
+  fill: string = "rgba(0,0,0,0)";
+  stroke: string = "red";
+  strokeWidth: number = 2;
+  dragData: IDragData = {
     isDragging: false,
     startX: 0,
     startY: 0,
@@ -34,7 +38,7 @@ export class ToolCanvasManager {
       backgroundColor: "white",
     });
     this.toolCanvas.on("mouse:down", (e) => {
-      if (!this.graphType || !!this.toolCanvas.getActiveObject()) {
+      if (!this.shapeData || !!this.toolCanvas.getActiveObject()) {
         return;
       }
       this.dragData.isDragging = true;
@@ -44,14 +48,17 @@ export class ToolCanvasManager {
     this.toolCanvas.on("mouse:move", (e) => {
       if (
         !this.dragData.isDragging ||
-        !this.graphType ||
+        !this.shapeData ||
         !!this.toolCanvas.getActiveObject()
       ) {
         return;
       }
       this.dragData.currentX = e.pointer.x;
       this.dragData.currentY = e.pointer.y;
-      this.graph?.set({
+      if (this.shape) {
+        this.shapeData.updateShape(this.shape, this.dragData);
+      }
+      this.shape?.set({
         width: Math.abs(this.dragData.currentX - this.dragData.startX),
         height: Math.abs(this.dragData.currentY - this.dragData.startY),
       });
@@ -63,16 +70,15 @@ export class ToolCanvasManager {
       );
 
       // 只有当拖动距离大于 MIN_DRAG_DISTANCE 时才创建图形
-      if (dragDistance > MIN_DRAG_DISTANCE && !this.graph) {
-        this.graph = new fabric[this.graphType]({
-          left: this.dragData.startX,
-          top: this.dragData.startY,
-          width: 0,
-          height: 0,
+      if (dragDistance > MIN_DRAG_DISTANCE && !this.shape) {
+        this.shape = this.shapeData.createShape(this.dragData);
+        this.shape.set({
           fill: this.fill,
           selectable: true,
+          strokeWidth: this.strokeWidth,
+          stroke: this.stroke,
         });
-        this.toolCanvas.add(this.graph);
+        this.toolCanvas.add(this.shape);
       }
       this.toolCanvas.renderAll();
     });
@@ -80,23 +86,23 @@ export class ToolCanvasManager {
       this.dragData.isDragging = false;
       this.dragData.currentX = e.pointer.x;
       this.dragData.currentY = e.pointer.y;
-      if (this.graph) {
-        this.toolCanvas.setActiveObject(this.graph);
+      if (this.shape) {
+        this.toolCanvas.setActiveObject(this.shape);
         this.toolCanvas.renderAll();
-        this.graph = null;
+        this.shape = null;
       }
     });
   }
 
-  addGraph(graphType) {
-    console.log("addGraph", graphType);
-    this.graphType = graphType;
+  addShape(shapeData) {
+    console.log("addShape", shapeData);
+    this.shapeData = shapeData;
   }
 
   changeSelectStatus(selection) {
     this.toolCanvas.selection = selection;
     this.dragData.isDragging = false;
-    this.graphType = null;
+    this.shapeData = null;
     console.log(this.toolCanvas);
   }
 }
