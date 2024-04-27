@@ -1,5 +1,5 @@
 import { createElement } from "tsx-create-element";
-import { toolCanvasManager } from "../../ToolCanvasManager";
+import { toolCanvasManager } from "../../toolCanvasManager";
 import AppIcon from "../AppIcon";
 
 export const SelectBtn = () => {

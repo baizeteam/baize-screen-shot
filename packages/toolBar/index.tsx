@@ -1,6 +1,6 @@
 import "./index.less";
 import { createElement, mount } from "tsx-create-element";
-import { baizeComponentManager } from "../BaizeComponentManager";
+import { baizeComponentManager } from "../baizeComponentManager";
 
 const DEFAULT_TOOL_LIST = [
   "SelectBtn",

@@ -1,22 +1,22 @@
 import { createElement } from "tsx-create-element";
-import AppIcon from "../AppIcon";
-import { toolCanvasManager } from "../../ToolCanvasManager";
+import { toolCanvasManager } from "../../toolCanvasManager";
 import { fabric } from "fabric";
+import AppIcon from "../AppIcon";
 
-export const RectBtn = () => {
+export const RoundBtn = () => {
   const handleClick = () => {
     const createShape = (data) => {
-      return new fabric.Rect({
+      return new fabric.Ellipse({
         left: data.startX,
         top: data.startY,
-        width: 0,
-        height: 0,
       });
     };
     const updateShape = (shape, data) => {
+      const width = Math.abs(data.currentX - data.startX);
+      const height = Math.abs(data.currentY - data.startY);
       shape.set({
-        width: Math.abs(data.currentX - data.startX),
-        height: Math.abs(data.currentY - data.startY),
+        rx: width / 2,
+        ry: height / 2,
       });
     };
     toolCanvasManager.changeSelectStatus(false);
@@ -28,7 +28,7 @@ export const RectBtn = () => {
   };
   return (
     <div onClick={handleClick}>
-      <AppIcon icon="#baize-screen-shot-juxing" />
+      <AppIcon icon="#baize-screen-shot-yuanxingweixuanzhong" />
     </div>
   );
 };

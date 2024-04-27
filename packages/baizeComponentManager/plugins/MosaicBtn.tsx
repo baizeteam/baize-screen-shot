@@ -1,6 +1,6 @@
 import { createElement } from "tsx-create-element";
 import AppIcon from "../AppIcon";
-import { toolCanvasManager } from "../../ToolCanvasManager";
+import { toolCanvasManager } from "../../toolCanvasManager";
 import { fabric } from "fabric";
 
 export const MosaicBtn = () => {

@@ -1,11 +1,17 @@
 import "./style.less";
 import { fabric } from "fabric";
 import { ClipBox } from "../lib/clipBox";
+// import {
+//   renderToolBar,
+//   toolCanvasManager,
+//   initToolCanvasManager,
+// } from "../lib";
+
+import { renderToolBar } from "../packages/toolBar";
 import {
-  renderToolBar,
   toolCanvasManager,
   initToolCanvasManager,
-} from "../lib";
+} from "../packages/toolCanvasManager";
 
 // 添加操作工具栏
 const toolBarDom = document.createElement("div");
